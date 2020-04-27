@@ -24,9 +24,9 @@ I was provided with part of the ETL pipeline that transfers data from a set of C
 
 ## Customer Requests on Data and Final Queries
 I had to create the data tables in Apache Cassandra based on the queries and the queries are based on the customer's request for data. The completed __data model__ can be examined in the _Project_1B_Data_Modeling_with_Cassandra.ipynb_ Jupyter Notebook. 
-1.   Give me the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4:  `SELECT * from songInfo_by_sessionId_and_itemInSession WHERE userId=10 AND sessionId=182 GROUP BY itemInSession, firstName, lastName`
-2. Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182: `SELECT * from artist_and_song_by_user_and_session WHERE userId=10 AND sessionId=182 GROUP BY itemInSession, firstName, lastName`
-3. Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own': `SELECT * from userInfo_by_song WHERE song='All Hands Against His Own' GROUP BY firstName, lastName`
+1.   Give me the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4:  `SELECT artist, song, length from songInfo_by_sessionId_and_itemInSession WHERE sessionId=338 AND itemInSession=4`
+2. Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182: `SELECT artist, song, firstName, lastName from artist_and_song_by_user_and_session WHERE userId=10 AND sessionId=182 GROUP BY itemInSession, firstName, lastName`
+3. Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own': `SELECT song, firstName, lastName from userInfo_by_song WHERE song='All Hands Against His Own' GROUP BY firstName, lastName`
 
 ## Docker Image
 A Docker image was used so that I could develop this project on my local machine, rather than on Udacity's internal system. Thank you to Ken Hanscombe for providing easy to follow instructions on how to pull, run, and connect to the Apache Cassandra image.
